@@ -1,6 +1,4 @@
-import * as dotenv from 'dotenv'
 import { Knex } from 'knex'
-dotenv.config({ path: '../../../.env' })
 
 export const development = {
   client: 'pg',
