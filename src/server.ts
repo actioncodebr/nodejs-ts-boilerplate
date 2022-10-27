@@ -1,3 +1,4 @@
+import './config/paths.config'
 import App from "@src/app";
 import Routes from "@controllers/router";
 
