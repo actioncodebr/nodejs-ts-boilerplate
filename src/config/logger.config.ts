@@ -1,4 +1,4 @@
-import { createLogger, format, transports, Logger } from 'winston'
+import { createLogger, format, transports, Logger, Logform } from 'winston'
 
 class LoggerManager {
   public logger: Logger
@@ -26,7 +26,7 @@ class LoggerManager {
     })
   }
 
-  private formatString(info: TransformableInfo) {
+  private formatString(info: Logform.TransformableInfo) {
     return `${info.timestamp} ${info.level}: ${info.message}`
   }
 }
