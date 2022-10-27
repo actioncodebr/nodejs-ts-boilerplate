@@ -47,6 +47,11 @@ export default class App {
 
   public listen(port?: number) {
     const ported = port || this.port
+
+    if (!ported) {
+      throw new Error('$PORT must be set, check your .env file')
+    }
+
     return this.server.listen(ported, () => {
       logger.info(`SERVER STARTED ON PORT ${ported}`)
       logger.info('WEBSOCKET STARTED')

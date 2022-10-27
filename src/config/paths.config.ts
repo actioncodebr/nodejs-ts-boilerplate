@@ -7,6 +7,7 @@ function addPaths(srcName: string) {
   addAlias('@models', resolve(`${srcName}/models`))
   addAlias('@config', resolve(`${srcName}/config`))
   addAlias('@views', resolve(`${srcName}/views`))
+  addAlias('@db', resolve(`${srcName}/db`))
   addAlias('@src', resolve(`${srcName}`))
 }
 
