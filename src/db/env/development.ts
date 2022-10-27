@@ -1,4 +1,6 @@
-import { Knex } from 'knex'
+import { Knex, knex } from 'knex'
+
+const databaseName = `${process.env.DB_NAME}_dev`
 
 export const development = {
   client: 'pg',
@@ -7,6 +9,13 @@ export const development = {
     port: process.env.DB_PORT,
     user: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-    database: `${process.env.DB_NAME}_dev`,
   } as Knex.Config,
 }
+;(async function main() {
+  const db = knex({
+    ...development,
+  })
+
+  await db.raw('DROP DATABASE ??', databaseName)
+  await db.raw('CREATE DATABASE ??', databaseName)
+})()
