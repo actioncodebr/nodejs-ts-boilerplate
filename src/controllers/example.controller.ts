@@ -1,22 +1,22 @@
-import { IController } from "@src/@types/controllers";
-import logger from "@src/config/logger.config";
-import { Request, Response, Router } from "express";
+import { IController } from '@src/@types/controllers'
+import logger from '@src/config/logger.config'
+import { Request, Response, Router } from 'express'
 
 export class ExampleController implements IController {
-  public path = "/examples";
-  public router = Router();
+  public path = '/examples'
+  public router = Router()
 
   constructor() {
-    this.initializeRoutes();
+    this.initializeRoutes()
   }
 
   public initializeRoutes() {
-    this.router.get(this.path, this.handleRoute);
+    this.router.get(this.path, this.handleRoute)
   }
 
   public handleRoute(req: Request, res: Response) {
-    logger.info(req.params);
+    logger.info(req.params)
 
-    return res.json({ hello: "world" });
+    return res.json({ hello: 'world' })
   }
 }

@@ -1,3 +1,3 @@
-import { ExampleController } from "@src/controllers";
+import { ExampleController } from '@src/controllers'
 
-export default [new ExampleController()];
+export default [new ExampleController()]
