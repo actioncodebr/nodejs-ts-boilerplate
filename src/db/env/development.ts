@@ -1,3 +1,4 @@
+import logger from '@src/config/logger'
 import { Knex, knex } from 'knex'
 
 const databaseName = `${process.env.DB_NAME}_dev`
@@ -12,10 +13,14 @@ export const development = {
   } as Knex.Config,
 }
 ;(async function main() {
-  const db = knex({
-    ...development,
-  })
+  const db = knex({ ...development })
+  try {
+    await db.raw(`CREATE DATABASE ${databaseName};`)
+  } catch (err) {
+    if ((err as string).toString().match(/already exists/)) {
+      return logger.info('DATABASE ALREADY EXISTS')
+    }
 
-  await db.raw('DROP DATABASE ??', databaseName)
-  await db.raw('CREATE DATABASE ??', databaseName)
+    logger.error(err)
+  }
 })()

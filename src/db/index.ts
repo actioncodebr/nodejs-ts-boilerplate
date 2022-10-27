@@ -1,19 +1,23 @@
 import { Knex, knex } from 'knex'
-import logger from '../config/logger.config'
+import logger from '@config/logger'
 import { databaseConfig } from './config.db'
 
 class DB {
   public manager: Knex
 
   constructor(config: { [key: string]: Knex.Config }) {
-    this.manager = knex({
-      ...config,
+    const configByEnv = config[process.env.NODE_ENV || 'production']
+    const conn = {
+      ...configByEnv,
       connection: {
         ...config.connection,
         database: `${process.env.DB_NAME}_dev`,
       },
-    })
-    logger.info(`config: ${config}`)
+    }
+
+    this.manager = knex(conn)
+
+    logger.info('CONNECTED TO DATABASE')
   }
 }
 

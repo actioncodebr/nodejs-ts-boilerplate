@@ -13,6 +13,8 @@ class LoggerManager {
 
   public expectedFormat = format.combine(
     format.colorize(),
+    format.prettyPrint(),
+    format.splat(),
     format.timestamp(),
     format.align(),
     format.printf(this.formatString)

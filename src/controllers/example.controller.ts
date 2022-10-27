@@ -1,5 +1,5 @@
 import { IController } from '@src/@types/controllers'
-import logger from '@src/config/logger.config'
+import logger from '@src/config/logger'
 import { Request, Response, Router } from 'express'
 
 export class ExampleController implements IController {
