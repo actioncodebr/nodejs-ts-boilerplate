@@ -1,37 +1,37 @@
-import * as dotenv from "dotenv";
-dotenv.config();
+import * as dotenv from 'dotenv'
+dotenv.config()
 
-import express, { Application } from "express";
-import { IController } from "./@types/controllers";
+import express, { Application } from 'express'
+import { IController } from './@types/controllers'
 
-import http from "http";
-import { Server } from "socket.io";
-import cors from "cors";
-import logger from "./config/logger.config";
+import http, { Server as NativeServer } from 'http'
+import { Server } from 'socket.io'
+import cors from 'cors'
+import logger from './config/logger.config'
 
 export default class App {
-  public app: Application;
-  public apiVersion = "v1";
-  public port: string | number | undefined;
-  public io: Server;
-  public server: any;
+  public app: Application
+  public apiVersion = 'v1'
+  public port: string | number | undefined
+  public io: Server
+  public server: NativeServer
 
   constructor(controllers: IController[], port?: number) {
     // this.port = process.env.API_PORT || port
-    this.app = express();
-    this.server = http.createServer(this.app);
+    this.app = express()
+    this.server = http.createServer(this.app)
 
-    this.io = new Server(this.server, { cors: { origin: "*" } });
+    this.io = new Server(this.server, { cors: { origin: '*' } })
 
-    this.port = process.env.API_SERVER_PORT || port;
-    this.initializeMiddlewares();
-    this.initializeControllers(controllers);
+    this.port = process.env.API_SERVER_PORT || port
+    this.initializeMiddlewares()
+    this.initializeControllers(controllers)
   }
 
   private initializeMiddlewares() {
-    this.app.use(express.json());
-    this.app.use(cors());
-    this.initializeEvents();
+    this.app.use(express.json())
+    this.app.use(cors())
+    this.initializeEvents()
   }
 
   private initializeEvents() {
@@ -41,15 +41,15 @@ export default class App {
 
   private initializeControllers(controllers: IController[]) {
     controllers.forEach((controller) => {
-      this.app.use(`/${this.apiVersion}`, controller.router);
-    });
+      this.app.use(`/${this.apiVersion}`, controller.router)
+    })
   }
 
   public listen(port?: number) {
-    const ported = port || this.port;
+    const ported = port || this.port
     return this.server.listen(ported, () => {
-      logger.info(`SERVER STARTED ON PORT ${ported}`);
-      logger.info(`WEBSOCKET STARTED`);
-    });
+      logger.info(`SERVER STARTED ON PORT ${ported}`)
+      logger.info('WEBSOCKET STARTED')
+    })
   }
 }
