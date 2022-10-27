@@ -1,3 +1,6 @@
+import * as dotenv from "dotenv";
+dotenv.config();
+
 import express, { Application } from "express";
 import { IController } from "./@types/controllers";
 
@@ -20,7 +23,7 @@ export default class App {
 
     this.io = new Server(this.server, { cors: { origin: "*" } });
 
-    this.port = 3333 || port;
+    this.port = process.env.API_SERVER_PORT || port;
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
   }
