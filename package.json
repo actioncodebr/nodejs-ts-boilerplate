@@ -11,7 +11,7 @@
     "build": "NODE_ENV=production rimraf dist && tsc",
     "start": "npm run build && NODE_ENV=production node dist/server.js",
     "test": "NODE_ENV=test jest --detectOpenHandles",
-    "test:watch": "yarn test --watchAll"
+    "test:watch": "NODE_ENV=test jest --watchAll"
   },
   "keywords": [],
   "author": "",
