@@ -7,7 +7,7 @@
     "knex": "ts-node -r tsconfig-paths/register -r dotenv/config node_modules/knex/bin/cli.js --knexfile src/db/config.db.ts",
     "lint": "eslint . --ext .ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "dev": "nodemon -e ts -w ./src -x ts-node -r tsconfig-paths/register src/server.ts",
+    "dev": "NODE_ENV=development nodemon -e ts -w ./src -x ts-node -r tsconfig-paths/register src/server.ts",
     "build": "NODE_ENV=production rimraf dist && tsc",
     "start": "npm run build && NODE_ENV=production node dist/server.js",
     "test": "NODE_ENV=test jest --detectOpenHandles",

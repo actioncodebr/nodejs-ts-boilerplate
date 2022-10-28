@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
+
 import logger from '@src/config/logger'
 import { Knex, knex } from 'knex'
 

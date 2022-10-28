@@ -1,7 +1,7 @@
 import db from '..'
 
 export async function up(): Promise<void> {
-  db.schema.createTable('examples', (table) => {
+  await db.schema.createTable('examples', (table) => {
     table.string('title')
     table.string('description')
   })
