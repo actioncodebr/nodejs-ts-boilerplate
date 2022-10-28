@@ -23,6 +23,7 @@
       "@models/*": ["src/models/*"],
       "@views/*": ["src/views/*"],
       "@config/*": ["src/config/*"],
+      "@db/*": ["src/db/*"],
       "@types/*": ["src/@types/*"]
     }
   },

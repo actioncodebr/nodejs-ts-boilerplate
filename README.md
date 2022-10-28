@@ -8,6 +8,7 @@
 - **[Nodejs](https://nodejs.org/en/)**
 - **[Express](https://expressjs.com/)**
 - **[Socket.io](https://github.com/socketio/socket.io)**
+- **[Knex](https://knexjs.org/)**
 - **[Winston](https://github.com/winstonjs/winston)**
 - **[TypeScript](https://www.typescriptlang.org/)**
 - **[Jest](https://jestjs.io/)**

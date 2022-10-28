@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "knex": "ts-node -r tsconfig-paths/register -r dotenv/config node_modules/knex/bin/cli.js --knexfile src/db/config.db.ts",
     "lint": "eslint . --ext .ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "dev": "nodemon -e ts -w ./src -x ts-node -r tsconfig-paths/register src/server.ts",
+    "dev": "NODE_ENV=development nodemon -e ts -w ./src -x ts-node -r tsconfig-paths/register src/server.ts",
     "build": "NODE_ENV=production rimraf dist && tsc",
     "start": "npm run build && NODE_ENV=production node dist/server.js",
     "test": "NODE_ENV=test jest --detectOpenHandles",
@@ -19,7 +20,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "knex": "^2.3.0",
     "module-alias": "^2.2.2",
+    "pg": "^8.8.0",
     "rimraf": "^3.0.2",
     "socket.io": "^4.5.3",
     "winston": "^3.8.2"

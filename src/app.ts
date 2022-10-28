@@ -7,10 +7,12 @@ import { IController } from './@types/controllers'
 import http, { Server as NativeServer } from 'http'
 import { Server } from 'socket.io'
 import cors from 'cors'
-import logger from './config/logger.config'
+import logger from './config/logger'
+import DB from '@db/index'
 
 export default class App {
   public app: Application
+  public db: typeof DB
   public apiVersion = 'v1'
   public port: string | number | undefined
   public io: Server
@@ -19,6 +21,7 @@ export default class App {
   constructor(controllers: IController[], port?: number) {
     // this.port = process.env.API_PORT || port
     this.app = express()
+    this.db = DB
     this.server = http.createServer(this.app)
 
     this.io = new Server(this.server, { cors: { origin: '*' } })
@@ -32,11 +35,18 @@ export default class App {
     this.app.use(express.json())
     this.app.use(cors())
     this.initializeEvents()
+
+    this.app.use((req, _res, next) => {
+      logger.info('body: %o', req.body)
+      logger.info('params: %o', req.params)
+      logger.info('headers: %o', req.headers)
+
+      next()
+    })
   }
 
   private initializeEvents() {
-    // this.io.on("connect", () => {
-    // });
+    // this.io.on("connect", () => {});
   }
 
   private initializeControllers(controllers: IController[]) {
@@ -47,6 +57,11 @@ export default class App {
 
   public listen(port?: number) {
     const ported = port || this.port
+
+    if (!ported) {
+      throw new Error('$PORT must be set, check your .env file')
+    }
+
     return this.server.listen(ported, () => {
       logger.info(`SERVER STARTED ON PORT ${ported}`)
       logger.info('WEBSOCKET STARTED')
