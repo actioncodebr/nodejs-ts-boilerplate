@@ -14,11 +14,11 @@
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
 
 
-    "gen:migration": "knex migrate:make",
+    "create:migration": "npm run knex migrate:make",
 
 
-    "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback",
+    "migrate": "npm run knex migrate:latest",
+    "rollback": "npm run knex migrate:rollback",
 
     "knex": "ts-node -r tsconfig-paths/register -r dotenv/config node_modules/knex/bin/cli.js --knexfile src/db/config.db.ts"
   },
