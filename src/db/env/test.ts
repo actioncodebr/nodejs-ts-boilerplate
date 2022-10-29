@@ -16,11 +16,13 @@ export const test = {
   } as Knex.Config,
 }
 ;(async function main() {
+  if (process.env.NODE_ENV !== 'test') return
   const db = knex({ ...test })
   try {
     await db.raw(`CREATE DATABASE ${databaseName};`)
   } catch (err) {
     if ((err as string).toString().match(/already exists/)) {
+      logger.info('RUNNING IN ENV: TEST == %o', process.env.NODE_ENV)
       return logger.info('DATABASE ALREADY EXISTS')
     }
 

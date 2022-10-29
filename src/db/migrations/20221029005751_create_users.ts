@@ -3,7 +3,7 @@ import db from '..'
 
 export async function up(): Promise<void> {
   try {
-    await db.manager.schema.createTable('examples', (table) => {
+    await db.manager.schema.createTable('users', (table) => {
       table.string('title')
       table.string('description')
     })
@@ -14,7 +14,7 @@ export async function up(): Promise<void> {
 
 export async function down(): Promise<void> {
   try {
-    await db.manager.schema.dropTable('examples')
+    await db.manager.schema.dropTable('users')
   } catch (err) {
     logger.error(err)
   }
