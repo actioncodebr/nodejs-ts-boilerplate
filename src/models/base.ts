@@ -1,6 +1,7 @@
 import DB from '@db/index'
+import { Knex } from 'knex'
 
 export class Base {
-  schema = DB.manager.schema
-  manager = DB.manager
+  static schema = DB.manager.schema
+  static repo: Knex = DB.manager
 }
