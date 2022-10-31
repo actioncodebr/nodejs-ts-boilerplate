@@ -25,7 +25,7 @@ export class ExampleController implements IController {
   }
 
   public async handleGet(_req: Request, res: Response) {
-    const vals = await Example.getAll()
+    const vals = await Example.all()
 
     return res.json({ hello: 'world', vals: vals })
   }

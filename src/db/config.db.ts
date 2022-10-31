@@ -10,4 +10,4 @@ export const databaseConfig: {
   production: CONFIG.production,
 }
 
-export default databaseConfig
+export default databaseConfig[process.env.NODE_ENV || 'development']
