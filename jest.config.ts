@@ -11,6 +11,7 @@ const config: Config.InitialOptions = {
     '^@src(.*)$': '<rootDir>/src/$1',
     '^@controllers(.*)$': '<rootDir>/src/controllers/$1',
     '^@models(.*)$': '<rootDir>/src/models/$1',
+    '^@middlewares(.*)$': '<rootDir>/src/middlewares/$1',
     '^@views(.*)$': '<rootDir>/src/views/$1',
     '^@config(.*)$': '<rootDir>/src/config/$1',
     '^@db(.*)$': '<rootDir>/src/db/$1',
