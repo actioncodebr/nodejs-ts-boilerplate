@@ -1,15 +1,15 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-import express, { Application } from 'express'
-import { IController } from './@types/controllers'
-
 import http, { Server as NativeServer } from 'http'
+import express, { Application } from 'express'
 import { Server } from 'socket.io'
-import cors from 'cors'
 import logger from '@config/logger'
 import DB from '@db/index'
+import cors from 'cors'
+
 import { LogMiddleware } from '@middlewares/log-request'
+import { IController } from '@src/@types/controllers'
 
 export default class App {
   public app: Application
