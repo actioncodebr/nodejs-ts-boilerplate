@@ -21,6 +21,7 @@
       "@src/*": ["src/*"],
       "@controllers/*": ["src/controllers/*"],
       "@models/*": ["src/models/*"],
+      "@middlewares/*": ["src/middlewares/*"],
       "@views/*": ["src/views/*"],
       "@config/*": ["src/config/*"],
       "@db/*": ["src/db/*"],
